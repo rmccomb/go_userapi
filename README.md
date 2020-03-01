@@ -22,4 +22,4 @@ The back end store is an in-memory cache for simplicity.
 
 **JWTSigningKey** is a string used to sign the token
 
-A front-end is available in another repository as a .NET Core MVC application, see [rmccomb/UserManagerFrontEnd](/rmccomb/UserManagerFrontEnd).
+A front-end is available in another repository as a .NET Core MVC application, see [rmccomb/UserManagerFrontEnd](../rmccomb/UserManagerFrontEnd).
