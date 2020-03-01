@@ -47,9 +47,10 @@ func init() {
 	}
 	viper.SetDefault("AdminEmail", "admin@ecn.com")
 	viper.SetDefault("AdminPassword", "pwd")
-	viper.SetDefault("MySigningKey", "SECRET_KEY")
+	viper.SetDefault("JwtSigningKey", "SECRET_KEY")
 
-	MySigningKey = []byte(viper.GetString("MySigningKey"))
+	MySigningKey = []byte(viper.GetString("JwtSigningKey"))
+
 	// TODO create admin user in database
 	// db, err := sql.Open("mysql", "user:password@/dbname")
 	// if err != nil {
