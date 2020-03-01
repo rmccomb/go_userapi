@@ -11,12 +11,12 @@ Methods available are:
 |**GET /users**|Get all users in the backend store|
 |**GET /user/{email}**|Get a specific user|
 |**PUT /user**|Add (register) a new user to the store (non secured)|
-|**POST /user**|Update an existing user in the store|
-|**DELETE /user/{email}**|Delete a specific user in the store|
+|**POST /user**|Update an existing user in the store (admin only)|
+|**DELETE /user/{email}**|Delete a specific user in the store (admin only)|
 
 The back end store is an in-memory cache for simplicity.
 
-Configuration is in the **config.yaml** file. 
+**Configuration** is in the **config.yaml** file. 
 
 Elements are:
 
