@@ -16,11 +16,9 @@ Methods available are:
 
 The back end store is an in-memory cache for simplicity.
 
-**Configuration** is in the **config.yaml** file. 
+**Configuration** is in the **config.yaml** file. The configurable elements are:
 
-Elements are:
-
-**AdminEmail** and **AdminPassword** for the admin user.
+**AdminEmail** and **AdminPassword** define the admin user.
 
 **JWTSigningKey** is a string used to sign the token
 
