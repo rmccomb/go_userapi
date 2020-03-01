@@ -1,12 +1,12 @@
 # go_userapi
-A secured REST interface to a user manager written in go
+A secured REST interface to a user manager written in go as a programming challenge.
 
 Methods available are:
 
 | HTTP Method | Description |
 |---|---|
 |**GET /status** |Check the seb server status |
-|**POST /signin**|A valid username(email) & password should be provided in the request body in JSON. e.g. {"email":"rob@rm.com","password":"abc123"} The method returns a JWT token which is used to authenticate in the other methods.|
+|**POST /signin**|A valid username(email) & password should be provided in the request body in JSON. e.g. {"email":"rob@rm.com","password":"abc123"} The method returns a JWT token which is used to authenticate other methods.|
 |**GET /validatetoken**|Validate the given JWT token (in the request header) and return OK on success|
 |**GET /users**|Get all users in the backend store|
 |**GET /user/{email}**|Get a specific user|
