@@ -37,7 +37,9 @@ type Claims struct {
 var memCache *cache.Cache
 
 func init() {
-	// Get config
+
+	// Get config and init cache
+
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
@@ -118,7 +120,9 @@ func AuthMiddleware(next http.Handler) http.Handler {
 }
 
 func authenticate(w http.ResponseWriter, r *http.Request) (*Claims, error) {
+
 	// Get the claims token from the request's cookies
+
 	c, err := r.Cookie("token")
 	if err != nil {
 		if err == http.ErrNoCookie {

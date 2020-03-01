@@ -15,9 +15,9 @@ import (
 
 func main() {
 
-	r := mux.NewRouter() // gorilla/mux router
+	// Create http endpoints for external consumption
 
-	// Set http handlers for external consumption
+	r := mux.NewRouter() // gorilla/mux router
 
 	// Simple status check
 	r.Handle("/status", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -51,10 +51,11 @@ func main() {
 }
 
 func signin(w http.ResponseWriter, r *http.Request) {
-	// get user from database, if found return jwt cookie
 
+	// Get user from database, if found return jwt cookie
+
+	// Decode JSON body into credentials (email and password)
 	var creds Credentials
-	// Get JSON body and decode into credentials (email and password)
 	err := json.NewDecoder(r.Body).Decode(&creds)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -66,7 +67,7 @@ func signin(w http.ResponseWriter, r *http.Request) {
 	if claims.IsValid {
 		expirationTime := time.Now().Add(5 * time.Minute) // Declare expiration time of five minutes
 
-		// create token with these claims and set cookie
+		// Create token with these claims and set cookie
 		token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 		tokenString, err := token.SignedString(MySigningKey)
 		if err != nil {
@@ -90,14 +91,15 @@ func signin(w http.ResponseWriter, r *http.Request) {
 }
 
 var validatetoken = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	// AuthMiddleware validates
+
+	// AuthMiddleware validates for us
+
 	w.WriteHeader(http.StatusOK)
 })
 
 var getUsers = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
-	// Gets all users from database and returns as JSON
-	//payload, _ := json.Marshal(memCache.Items())
+	// get all users from database and return as JSON array
 
 	// Convert key-value store to array of User
 	users := make([]User, memCache.ItemCount())
@@ -115,11 +117,10 @@ var getUsers = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 var putUser = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
-	// Create new non-admin user in database
-	// not authenticated
+	// Create new non-admin user in database, NB not authenticated
 
-	var user User
 	// Get JSON body and decode into user
+	var user User
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -138,7 +139,9 @@ var putUser = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 })
 
 var getUser = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	// get specific user
+
+	// Get specific user
+
 	vars := mux.Vars(r)
 	email := vars["email"]
 	if email == "" {
@@ -161,11 +164,10 @@ var getUser = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 var postUser = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
-	// update specific user in database
-	// NB admin only
+	// Update specific user in database, NB admin only
 
-	var user User
 	// Get JSON body and decode into user
+	var user User
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -186,8 +188,7 @@ var postUser = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 var deleteUser = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
-	// delete specific user in database
-	// NB admin only
+	// Delete specific user in database, NB admin only
 
 	vars := mux.Vars(r)
 	email := vars["email"]
