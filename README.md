@@ -3,40 +3,16 @@ A secured REST interface to a user manager written in go
 
 Methods available are:
 
-**GET /status** 
-
-Check the seb server status
-
-**POST /signin**
-
-A valid username(email) & password should be provided in the request body in JSON.
-e.g. {"email":"rob@rm.com","password":"abc123"}
-The method returns a JWT token which is used to authenticate in the other methods.
-
-**GET /validatetoken**
-
-Validate the given JWT token (in the request header) and return OK on success
-
-**GET /users**
-
-Get all users in the backend store
-
-**GET /user/{email}**
-
-
-Get a specific user
-
-**PUT /user**
-
-Add (register) a new user to the store (non secured)
-
-**POST /user**
-
-Update an existing user in the store
-
-**DELETE /user/{email}**
-
-Delete a specific user in the store
+| HTTP Method | Description |
+|---|---|
+|**GET /status** |Check the seb server status |
+|**POST /signin**|A valid username(email) & password should be provided in the request body in JSON. e.g. {"email":"rob@rm.com","password":"abc123"} The method returns a JWT token which is used to authenticate in the other methods.|
+|**GET /validatetoken**|Validate the given JWT token (in the request header) and return OK on success|
+|**GET /users**|Get all users in the backend store|
+|**GET /user/{email}**|Get a specific user|
+|**PUT /user**|Add (register) a new user to the store (non secured)|
+|**POST /user**|Update an existing user in the store|
+|**DELETE /user/{email}**|Delete a specific user in the store|
 
 The back end store is an in-memory cache for simplicity.
 
