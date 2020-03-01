@@ -61,7 +61,6 @@ func signin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//var admin = GetAdminUserCredentials()
 	claims := GetValidClaims(creds)
 
 	if claims.IsValid {
@@ -96,8 +95,10 @@ var validatetoken = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 })
 
 var getUsers = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+
 	// Gets all users from database and returns as JSON
 	//payload, _ := json.Marshal(memCache.Items())
+
 	// Convert key-value store to array of User
 	users := make([]User, memCache.ItemCount())
 	n := 0
@@ -113,6 +114,7 @@ var getUsers = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 })
 
 var putUser = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+
 	// Create new non-admin user in database
 	// not authenticated
 
@@ -158,7 +160,8 @@ var getUser = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 })
 
 var postUser = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	// TODO authenticate and update specific user in database
+
+	// update specific user in database
 	// NB admin only
 
 	var user User
