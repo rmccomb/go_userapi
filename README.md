@@ -3,36 +3,49 @@ A secured REST interface to a user manager written in go
 
 Methods available are:
 
-GET /status 
-    Check the seb server status
+**GET /status** 
 
-POST /signin
-    A valid username(email) & password should be provided in the request body in JSON
-    The method returns a JWT token which is used to authenticate in the other methods.
+Check the seb server status
 
-GET /validatetoken 
-    Validate the given token and return OK on success
+**POST /signin**
 
-GET /users
-    Get all users in the backend store
+A valid username(email) & password should be provided in the request body in JSON.
+e.g. {"email":"rob@rm.com","password":"abc123"}
+The method returns a JWT token which is used to authenticate in the other methods.
 
-GET /user/{email}
-    Get a specific user
+**GET /validatetoken**
 
-PUT /user
-    Add (register) a new user to the store (non secured)
+Validate the given JWT token (in the request header) and return OK on success
 
-POST /user
-    Update an existing user in the store
+**GET /users**
 
-DELETE /user/{email}
-    Delete a specific user in the store
+Get all users in the backend store
+
+**GET /user/{email}**
+
+
+Get a specific user
+
+**PUT /user**
+
+Add (register) a new user to the store (non secured)
+
+**POST /user**
+
+Update an existing user in the store
+
+**DELETE /user/{email}**
+
+Delete a specific user in the store
 
 The back end store is an in-memory cache for simplicity.
 
-Configuration is in the config.yaml file. 
-Elements are:
-AdminEmail and AdminPassword for the admin user/
-JWTSigningKey is used to sign the token
+Configuration is in the **config.yaml** file. 
 
-A front-end is available in another repository
+Elements are:
+
+**AdminEmail** and **AdminPassword** for the admin user.
+
+**JWTSigningKey** is a string used to sign the token
+
+A front-end is available in another repository as a .NET Core MVC application.
