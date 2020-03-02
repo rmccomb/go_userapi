@@ -1,5 +1,5 @@
 # go_userapi
-A secured REST interface to a user manager written in go as a programming challenge.
+A JWT secured REST interface to a basic user manager written in Go as a programming challenge.
 
 Methods available are:
 
